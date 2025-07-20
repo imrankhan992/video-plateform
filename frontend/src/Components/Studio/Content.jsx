@@ -35,7 +35,7 @@ function Content() {
   const [isDeleteClicked, setIsDeleteClicked] = useState(false);
   const [DeleteVideoData, setDeleteVideoData] = useState();
   const [boxclicked, setBoxClicked] = useState(false);
-  const videoUrl = "https://shubho-youtube-mern.netlify.app/video";
+  const videoUrl = "https://example.app/video";
   const [loading, setLoading] = useState(true);
   const [menu, setmenu] = useState(() => {
     const menu = localStorage.getItem("studioMenuClicked");
