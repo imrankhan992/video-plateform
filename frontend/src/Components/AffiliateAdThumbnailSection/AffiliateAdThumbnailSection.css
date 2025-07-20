@@ -1,0 +1,54 @@
+.affiliate-ad-thumbnail-title{
+    font-size: 18px;
+    font-weight: 600;
+    color: black;
+    margin-top: 2rem;
+    margin-bottom: 10px;
+}
+.affiliate-ad-thumbnail-section{
+
+    height: 150px;
+    max-width: 400px;
+    border: 2px solid #BFBFBF;
+    border-radius: 10px;
+    margin-block: 20px ;
+    display: flex;
+    cursor: pointer;
+
+  
+}
+.affiliate-ad-thumbnail-section:hover{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: box-shadow 0.3s ease-in-out;
+    background-color: #F9F9F9;
+}
+.affiliate-ad-thumbnail-section a{
+    white-space: nowrap;
+}
+.affiliate-ad-thumbnail-section img{
+    max-width: 400px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.affiliate-ad-thumbnail-section-container{
+    width: 100%;
+    border-bottom: 2px solid #BFBFBF;
+}
+.affiliate-ad-thumbnail-section-text{
+    padding: 10px;
+    font-size: 16px;
+    color: #000;
+    font-weight: 500;
+    text-decoration: none;
+
+}
+.link_affiliate{
+    text-decoration: underline;
+    color: #000;
+    font-weight: 500;
+}
+.link_affiliate:hover{
+    color: #000;
+    text-decoration: none;
+}
