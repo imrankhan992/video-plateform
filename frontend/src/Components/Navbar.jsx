@@ -34,7 +34,7 @@ function Navbar() {
   const [newSearch, setNewSearch] = useState(false);
   const [theme, setTheme] = useState(() => {
     const Dark = localStorage.getItem("Dark");
-    return Dark ? JSON.parse(Dark) : true;
+    return Dark ? JSON.parse(Dark) : false;
   });
   const profileRef = useRef();
   const searchRef = useRef();

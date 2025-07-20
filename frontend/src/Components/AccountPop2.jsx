@@ -18,7 +18,7 @@ function AccountPop() {
   const [profile, setProfile] = useState("");
   const [theme, setTheme] = useState(() => {
     const Dark = localStorage.getItem("Dark");
-    return Dark ? JSON.parse(Dark) : true;
+    return Dark ? JSON.parse(Dark) : false;
   });
   const [ChannelID, setChannelID] = useState();
   const [isBtnClicked, setIsBtnClicked] = useState(false);
@@ -141,29 +141,7 @@ function AccountPop() {
             />
             <p>YouTube</p>
           </div>
-          <div
-            className={
-              theme ? "apperance c-sec" : "apperance c-sec preview-lightt"
-            }
-            onClick={() => {
-              if (isBtnClicked === false) {
-                setIsBtnClicked(true);
-              } else {
-                setIsBtnClicked(false);
-              }
-            }}
-          >
-            <DarkModeOutlinedIcon
-              fontSize="medium"
-              style={{ color: theme ? "#909090" : "black" }}
-            />
-            <p>Appearance: {theme ? "Dark" : "Light"}</p>
-            <ArrowForwardIosRoundedIcon
-              className="open"
-              fontSize="small"
-              style={{ color: theme ? "#ffffff8a" : "#606060" }}
-            />
-          </div>
+       
         </div>
         <hr className={theme ? "seperate" : "seperate seperate-light"} />
         <div className="extra1-section">
@@ -198,21 +176,7 @@ function AccountPop() {
             : { display: "none", paddingTop: "20px" }
         }
       >
-        <div className="appearance-title">
-          <ArrowBackOutlinedIcon
-            className={theme ? "back-arrow" : "back-arrow preview-lightt"}
-            fontSize="medium"
-            style={{ color: theme ? "#909090" : "#606060" }}
-            onClick={() => {
-              if (isBtnClicked === true) {
-                setIsBtnClicked(false);
-              } else {
-                setIsBtnClicked(true);
-              }
-            }}
-          />
-          <p>Apperance</p>
-        </div>
+      
         <hr
           className={theme ? "seperate" : "seperate seperate-light"}
           style={

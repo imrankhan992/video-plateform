@@ -64,7 +64,7 @@ function VideoSection() {
   const [commentOpacity, setCommentOpacity] = useState(1);
   const [theme, setTheme] = useState(() => {
     const Dark = localStorage.getItem("Dark");
-    return Dark ? JSON.parse(Dark) : true;
+    return Dark ? JSON.parse(Dark) : false;
   });
 
   //EXTRAS
@@ -1855,8 +1855,12 @@ function VideoSection() {
             {/* affiliate link with its image like you does*/}
           
 
-              <AffiliateAdThumbnailSection  affiliateLink={affiliateLink} user={user}
+      {
+            affiliateLink &&  productAdsThumbnail &&(
+                      <AffiliateAdThumbnailSection  affiliateLink={affiliateLink} user={user}
     productAdsThumbnail={productAdsThumbnail} />
+            )
+      }
           <div className="comments-section first-one">
             <div
               className={

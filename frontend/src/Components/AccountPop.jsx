@@ -19,7 +19,7 @@ function AccountPop() {
   const [profile, setProfile] = useState("");
   const [theme, setTheme] = useState(() => {
     const Dark = localStorage.getItem("Dark");
-    return Dark ? JSON.parse(Dark) : true;
+    return Dark ? JSON.parse(Dark) : false;
   });
   const [ChannelID, setChannelID] = useState();
   const [isBtnClicked, setIsBtnClicked] = useState(false);
@@ -148,7 +148,9 @@ function AccountPop() {
           <div
             className={theme ? "yourstudio c-sec" : "yourstudio c-sec2"}
             onClick={() => {
-              window.location.href = "/studio";
+            user?.role === "admin"
+              ? (window.location.href = `/admin/studio/video`) 
+              : (window.location.href = `/studio`);
             }}
           >
             <SiYoutubestudio
@@ -157,27 +159,7 @@ function AccountPop() {
             />
             <p>YouTube Studio</p>
           </div>
-          <div
-            className={theme ? "apperance c-sec" : "apperance c-sec2"}
-            onClick={() => {
-              if (isBtnClicked === false) {
-                setIsBtnClicked(true);
-              } else {
-                setIsBtnClicked(false);
-              }
-            }}
-          >
-            <DarkModeOutlinedIcon
-              fontSize="medium"
-              style={{ color: theme ? "white" : "black" }}
-            />
-            <p>Appearance: {theme ? "Dark" : "Light"}</p>
-            <ArrowForwardIosRoundedIcon
-              className="open"
-              fontSize="small"
-              style={{ color: theme ? "#ffffff8a" : "black" }}
-            />
-          </div>
+        
         </div>
         <hr className={theme ? "seperate" : "seperate-light"} />
         <div className="extra1-section">
@@ -210,62 +192,14 @@ function AccountPop() {
             : { display: "none", paddingTop: "20px" }
         }
       >
-        <div className="appearance-title">
-          <ArrowBackOutlinedIcon
-            className={theme ? "back-arrow" : "back-arroww2"}
-            fontSize="medium"
-            style={{ color: theme ? "white" : "black" }}
-            onClick={() => {
-              if (isBtnClicked === true) {
-                setIsBtnClicked(false);
-              } else {
-                setIsBtnClicked(true);
-              }
-            }}
-          />
-          <p>Apperance</p>
-        </div>
+     
         <hr
           className={theme ? "seperate" : "seperate-light"}
           style={
             isBtnClicked === true ? { marginTop: "6px" } : { marginTop: "15px" }
           }
         />
-        <div className="theme-section">
-          <p className="caution">Settings applied to this browser only</p>
-          <div className="theme-list">
-            <div
-              className={theme ? "dark-theme" : "dark-theme2"}
-              onClick={() => {
-                setTheme(true);
-                window.location.reload();
-              }}
-            >
-              <DoneOutlinedIcon
-                className="dark-arrow"
-                fontSize="medium"
-                color={theme ? "white" : "black"}
-                style={theme === true ? { opacity: 1 } : { opacity: 0 }}
-              />
-              <p>Dark theme</p>
-            </div>
-            <div
-              className={theme ? "light-theme" : "light-theme2"}
-              onClick={() => {
-                setTheme(false);
-                window.location.reload();
-              }}
-            >
-              <DoneOutlinedIcon
-                className="light-arrow"
-                fontSize="medium"
-                color={theme ? "white" : "black"}
-                style={theme === false ? { opacity: 1 } : { opacity: 0 }}
-              />
-              <p>Light theme</p>
-            </div>
-          </div>
-        </div>
+     
       </div>
     </>
   );

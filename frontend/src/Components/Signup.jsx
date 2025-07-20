@@ -9,7 +9,7 @@ function Signup() {
   const [data, setData] = useState({});
   const [theme, setTheme] = useState(() => {
     const Dark = localStorage.getItem("Dark");
-    return Dark ? JSON.parse(Dark) : true;
+    return Dark ? JSON.parse(Dark) : false;
   });
 
   //TOASTS

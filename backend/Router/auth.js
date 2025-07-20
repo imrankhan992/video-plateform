@@ -69,7 +69,7 @@ auth.post("/signup", async (req, res) => {
           <p style="color: #555;">Feel free to explore our platform and start sharing your videos with the world.</p>
           <p style="color: #555;">If you have any questions or need assistance, don't hesitate to reach out to us.</p>
           <p style="color: #555;">Best regards,</p>
-          <p style="color: #555;">Shubhojeet Bera</p>
+          <p style="color: #555;">Imran Khan</p>
         </div>
       `,
     };
@@ -219,7 +219,7 @@ auth.post("/resetlink", async (req, res) => {
           </p>
           <p style="color: #555;">This link is only valid for 30 minutes.</p>
           <p style="color: #555;">If you didn't request a password reset, please ignore this email.</p>
-          <p style="color: #888;">Best regards,<br/>Shubhojeet Bera</p>
+          <p style="color: #888;">Best regards,<br/>Imran Khan</p>
         </div>
       `,
     };

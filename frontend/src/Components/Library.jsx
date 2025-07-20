@@ -47,7 +47,7 @@ function Library() {
   document.title = "Library - YouTube";
   const [theme, setTheme] = useState(() => {
     const Dark = localStorage.getItem("Dark");
-    return Dark ? JSON.parse(Dark) : true;
+    return Dark ? JSON.parse(Dark) : false;
   });
 
   const User = useSelector((state) => state.user.user);
