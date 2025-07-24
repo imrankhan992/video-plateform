@@ -9,6 +9,7 @@ import LeftPanel from "./LeftPanel";
 import Navbar from "./Navbar";
 import "../Css/theme.css";
 import { useSelector } from "react-redux";
+import { categories } from "../Data/categories";
 
 function Browse() {
   const backendURL = "http://localhost:3000"
@@ -79,17 +80,7 @@ function Browse() {
     localStorage.setItem("menuClicked", JSON.stringify(menuClicked));
   }, [menuClicked]);
 
-  const Tags = [
-    "All",
-    "Artificial Intelligence",
-    "Comedy",
-    "Gaming",
-    "Vlog",
-    "Beauty",
-    "Travel",
-    "Food",
-    "Fashion",
-  ];
+
 
   useEffect(() => {
     const getVideos = async () => {
@@ -127,12 +118,14 @@ function Browse() {
 
   useEffect(() => {
     if (TagsSelected !== "All") {
-      const tagsSelectedLower = TagsSelected.toLowerCase();
+      const tagsSelectedLower = TagsSelected?.toLowerCase();
       const filteredVideos = VideoData.flatMap((item) =>
         item.VideoData.filter(
           (element) =>
-            element.Tags.toLowerCase().includes(tagsSelectedLower) ||
-            element.Title.toLowerCase().includes(tagsSelectedLower)
+            element.Tags?.toLowerCase()?.includes(tagsSelectedLower) ||
+          element.category?.toLowerCase().includes(tagsSelectedLower) ||
+           element.description?.toLowerCase().includes(tagsSelectedLower) ||
+            element.Title?.toLowerCase().includes(tagsSelectedLower)
         )
       );
       setFilteredVideos(filteredVideos);
@@ -196,7 +189,7 @@ function Browse() {
                 theme ? "popular-categories" : "popular-categories light-mode"
               }
             >
-              {Tags.map((element, index) => {
+              {categories.map((element, index) => {
                 return (
                   <div
                     className={
@@ -286,7 +279,7 @@ function Browse() {
               theme ? "popular-categories" : "popular-categories light-mode"
             }
           >
-            {Tags.map((element, index) => {
+            {categories.map((element, index) => {
               return (
                 <div
                   className={

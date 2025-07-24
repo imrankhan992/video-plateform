@@ -42,6 +42,7 @@ const VideoData = new mongoose.Schema({
       }
     },
   },
+  
   VideoData: [
     {
       thumbnailURL: {
@@ -75,6 +76,10 @@ const VideoData = new mongoose.Schema({
         required: true,
       },
       Tags: {
+        type: String,
+        required: true,
+      },
+      category: {
         type: String,
         required: true,
       },

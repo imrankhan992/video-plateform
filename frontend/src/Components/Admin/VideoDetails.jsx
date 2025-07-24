@@ -181,7 +181,7 @@ const handleAffiliateThumbnailUpload = (e) => {
 
   useEffect(() => {
     const handler = (e) => {
-      if (!optionRef.current.contains(e.target)) {
+      if (!optionRef?.current?.contains(e.target)) {
         setOptionClicked(false);
       }
     };

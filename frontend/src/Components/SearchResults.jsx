@@ -204,7 +204,7 @@ function SearchResults() {
   };
 
   if (
-    searchedVideoData.length === 1 &&
+    searchedVideoData?.length === 1 &&
     searchedVideoData[0].visibility === "Private"
   ) {
     return (
@@ -922,7 +922,7 @@ function SearchResults() {
     );
   } else if (
     searchedVideoData &&
-    searchedVideoData.length > 0 &&
+    searchedVideoData?.length > 0 &&
     !searchedChannelData
   ) {
     return (
@@ -945,7 +945,7 @@ function SearchResults() {
           >
             <div className="searched-videos-section">
               {searchedVideoData &&
-                searchedVideoData.length > 0 &&
+                searchedVideoData?.length > 0 &&
                 searchedVideoData.map((element, index) => {
                   return (
                     <>
@@ -1045,7 +1045,7 @@ function SearchResults() {
         >
           <div className="searched-videos-section">
             {searchedVideoData &&
-              searchedVideoData.length > 0 &&
+              searchedVideoData?.length > 0 &&
               searchedVideoData.map((element, index) => {
                 <hr
                   className={
@@ -1345,7 +1345,7 @@ function SearchResults() {
     searchedChannelData !== "NO DATA" &&
     searchedVideoData &&
     searchedVideoData !== "NO DATA" &&
-    searchedVideoData.length > 0
+    searchedVideoData?.length > 0
   ) {
     return (
       <>
@@ -1429,7 +1429,7 @@ function SearchResults() {
             </div>
             <div className="searched-videos-section">
               {searchedVideoData &&
-                searchedVideoData.length > 0 &&
+                searchedVideoData?.length > 0 &&
                 searchedVideoData.map((element, index) => {
                   <hr
                     className={
@@ -1680,7 +1680,7 @@ function SearchResults() {
           </div>
           <div className="searched-videos-section">
             {searchedVideoData &&
-              searchedVideoData.length > 0 &&
+              searchedVideoData?.length > 0 &&
               searchedVideoData.map((element, index) => {
                 <hr
                   className={

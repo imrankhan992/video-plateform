@@ -22,6 +22,9 @@ Videos.post("/publish", async (req, res) => {
       email,
       publishDate,
       Visibility,
+       productAdsThumbnail,
+           affiliateLink,
+           category,
     } = req.body;
 
     const refreshToken = req.cookies?.refreshToken;
@@ -67,6 +70,9 @@ Videos.post("/publish", async (req, res) => {
               videoLength: video_duration,
               uploaded_date: publishDate,
               visibility: Visibility,
+               productAdsThumbnail,
+           affiliateLink,
+           category:category,
             },
           ],
         });
@@ -82,6 +88,9 @@ Videos.post("/publish", async (req, res) => {
           videoLength: video_duration,
           uploaded_date: publishDate,
           visibility: Visibility,
+           productAdsThumbnail,
+           affiliateLink,
+           category: category,
         });
       }
 
@@ -92,7 +101,7 @@ Videos.post("/publish", async (req, res) => {
     } else {
       return res.status(404).json({ message: "User not found" });
     }
-  } catch (error) {
+  } catch (error) {``
     console.error(error);
     return res.status(500).json({ message: "An error occurred" });
   }

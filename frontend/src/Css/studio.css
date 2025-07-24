@@ -173,12 +173,16 @@
   font-size: 16px;
   border: none;
 }
+.video-tag-section{
 
+  padding-bottom: 10rem;
+}
 .last-btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 15px;
+  background-color: white;
 }
 
 .last-segment {
@@ -355,6 +359,7 @@
 
 .uploading-video-data {
   display: flex;
+  overflow-y: auto;
 }
 
 .right-video-section {
@@ -387,6 +392,7 @@
 
 .video-visibility {
   margin-top: 35px;
+  width: 100%;
 }
 
 .file-details > p:nth-child(1) {
@@ -557,7 +563,7 @@
 
 .selected-visibility {
   height: 50px;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: black;
   color: white;
   cursor: pointer;
   outline: none;
@@ -573,14 +579,29 @@
   padding-left: 15px;
   padding-right: 15px;
 }
-
+.selected-visibility-light{
+   height: 50px;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  height: 50px;
+  margin-top: 10px;
+  border: 2px solid rgba(128, 128, 128, 0.337);
+  border-radius: 5px;
+  font-size: 15px;
+  width: -webkit-fill-available;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 15px;
+  padding-right: 15px;
+}
 .seperatee {
   border: 1px solid #5b5d6265 !important;
 }
 
 .show-visibility {
   position: relative;
-  background-color: rgba(255, 255, 255, 0);
   color: white;
   cursor: pointer;
   outline: none;
@@ -590,6 +611,8 @@
   font-size: 15px;
   width: -webkit-fill-available;
   animation: pulldown 0.16s ease;
+    background-color: black;
+
 }
 
 @keyframes pulldown {

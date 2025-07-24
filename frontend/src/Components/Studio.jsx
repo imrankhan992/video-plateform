@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Navbar2 from "./Navbar2";
 import LeftPanel2 from "./LeftPanel2";
 import avatar from "../img/avatar.png";
@@ -30,6 +30,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LanguageIcon from "@mui/icons-material/Language";
+import SelectCategory from "./Studio/Categories/Categories";
 
 function Studio() {
   const backendURL = "http://localhost:3000"
@@ -64,6 +65,19 @@ function Studio() {
   const [isVisibilityClicked, setisVisibilityClicked] = useState(false);
   const [myVideos, setMyVideos] = useState([]);
   const [isPublished, setIsPublished] = useState(false);
+  const thumbnailInputRef = useRef(null);
+
+  // add thumbnail image
+   const [isThumbnailSelectedAd, setIsThumbnailSelectedAd] = useState(false);
+     const [selectedThumbnailAd, setSelectedThumbnailAd] = useState(null);
+     const [previewThumbnailAd, setPreviewThumbnailAd] = useState(null);
+  const thumbnailInputRefAd = useRef(null);
+  const [affiliateLink, setAffiliateLink] = useState("");
+
+  // category states
+   const [isCategoryClicked, setIsCategoryClicked] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("Select Category");
+
   const [theme, setTheme] = useState(() => {
     const Dark = localStorage.getItem("Dark");
     return Dark ? JSON.parse(Dark) : false;
@@ -473,7 +487,7 @@ function Studio() {
   const handleTitleChange = (e) => {
     setVideoName(e.target.value);
   };
-  //UPLOAD THUMBNAIL
+
 
   const handleThumbnailChange = (event) => {
     const file = event.target.files[0];
@@ -500,8 +514,39 @@ function Studio() {
       setPreviewThumbnail(null);
       alert("Please select an image file.");
     }
+    // Reset input value so the same file triggers onChange again
+  if (thumbnailInputRef.current) {
+    thumbnailInputRef.current.value = null;
+  }
   };
 
+    const handleAdThumbnailChange = (event) => {
+    const file = event.target.files[0];
+
+    if (file && file.type.startsWith("image/")) {
+      const img = new Image();
+      img.onload = function () {
+      
+        
+          setSelectedThumbnailAd(file);
+          setPreviewThumbnailAd(URL.createObjectURL(file));
+          setIsThumbnailSelectedAd(true);
+       
+      };
+      img.src = URL.createObjectURL(file);
+    } else {
+      setIsThumbnailSelectedAd(false);
+      setSelectedThumbnailAd(null);
+      setPreviewThumbnailAd(null);
+      alert("Please select an image file.");
+    }
+
+    // Reset input value so the same file triggers onChange again
+  if (thumbnailInputRefAd.current) {
+    thumbnailInputRefAd.current.value = null;
+  }
+  };
+  //UPLOAD THUMBNAIL
   const uploadThumbnail = async () => {
     try {
       if (isThumbnailSelected === false) {
@@ -536,10 +581,46 @@ function Studio() {
     }
   };
 
+  // upload ad thumbnail
+
+   const uploadThumbnailAd = async () => {
+    try {
+      if (isThumbnailSelectedAd === false) {
+        return null;
+      }
+
+      const fileReference = ref(storage, `thumbnailAds/${selectedThumbnailAd.name}`);
+      const uploadData = uploadBytesResumable(fileReference, selectedThumbnailAd);
+
+      return new Promise((resolve, reject) => {
+        uploadData.on(
+          "state_changed",
+          null,
+          (error) => {
+            console.log(error);
+            reject(error);
+          },
+          async () => {
+            try {
+              const downloadURL = await getDownloadURL(uploadData.snapshot.ref);
+              resolve(downloadURL);
+            } catch (error) {
+              console.log(error);
+              reject(error);
+            }
+          }
+        );
+      });
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+
   //SAVE UPLOAD DATA TO DATABASE
 
   const PublishData = async () => {
-    if (videoName === "" || videoDescription === "" || videoTags === "") {
+    if (videoName === "" || videoDescription === "" || videoTags === "" || VideoURL === "" || selectedCategory === "Select Category") {
       VideoErrorNotify();
     } else if (selectedThumbnail === null) {
       ThumbnailNotify();
@@ -548,18 +629,22 @@ function Studio() {
         setLoading(true);
         // Upload the thumbnail
         const thumbnailURL = await uploadThumbnail();
+        const adThumbnailURL = await uploadThumbnailAd();
         const currentDate = new Date().toISOString();
         // Proceed with saving the data
         const data = {
           videoTitle: videoName,
           videoDescription: videoDescription,
           tags: videoTags,
+           productAdsThumbnail: adThumbnailURL,
+           affiliateLink: affiliateLink,
           videoLink: VideoURL,
           thumbnailLink: thumbnailURL,
           email: user?.email,
           video_duration: duration,
           publishDate: currentDate,
           Visibility: visibility,
+          category: selectedCategory,
         };
         // Send the POST request
         const response = await fetch(`${backendURL}/publish`, {
@@ -586,6 +671,7 @@ function Studio() {
           }, 1500);
         }
       } catch (error) {
+        setLoading(false);
         // console.log(error.message);
       }
     }
@@ -1060,8 +1146,87 @@ function Studio() {
                     placeholder="Tags"
                     onChange={(e) => setVideoTags(e.target.value)}
                   />
+                  <SelectCategory   isCategoryClicked ={isCategoryClicked} setIsCategoryClicked={setIsCategoryClicked} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/> 
+                   <input
+                    type="text"
+                    className={theme ? "video-tags" : "video-tags light-mode"}
+                    placeholder="Product URL for Your Ad"
+                    onChange={(e) => setAffiliateLink(e.target.value)}
+                  />
+                       
                 </div>
+           
               </form>
+
+            
+
+
+
+
+
+              {/*ad thumbnail starts */}
+              <div
+                className="thumbnail-section"
+                style={
+                  isThumbnailSelectedAd === false
+                    ? { display: "flex" }
+                    : { display: "none" }
+                }
+              >
+                
+                <p>Showcase Your Ad with a Thumbnail</p>
+                <p>
+                 Select or upload a picture that clearly represents your ad. A good thumbnail should showcase the product or service you are advertising.
+                </p>
+                <label htmlFor="thumbnail-input-ad" className="upload-thumbnail">
+                  <AddPhotoAlternateOutlinedIcon
+                    fontSize="medium"
+                    style={{ color: "#808080" }}
+                  />
+                  <p>Upload Ad Thumbnail</p>
+                </label>
+                <input
+                  id="thumbnail-input-ad" 
+                  type="file"
+                  accept=".jpg, .png"
+                  style={{ display: "none" }}
+                  onChange={handleAdThumbnailChange}
+                    ref={thumbnailInputRefAd}
+                />
+              </div>
+              <div
+                className="thumbnail-section thumb2"
+                style={
+                  isThumbnailSelectedAd === true
+                    ? { display: "flex" }
+                    : { display: "none" }
+                }
+              >
+                <p>Showcase Your Ad with a Thumbnail</p>
+                <p>
+                  Select or upload a picture that clearly represents your ad. A good thumbnail should showcase the product or service you are advertising.
+                </p>
+                <div className="thumb2-img">
+                  <CloseRoundedIcon
+                    className="close close2"
+                    fontSize="medium"
+                    style={{ color: theme ? "gray" : "white" }}
+                    onClick={() => {
+                      setIsThumbnailSelectedAd(false);
+                      setSelectedThumbnailAd(null);
+                      setPreviewThumbnailAd(null);
+                    }}
+                  />
+                  <img
+                    className="prevThumbnail"
+                    src={previewThumbnailAd}
+                    alt=""
+                  />
+                </div>
+              </div>
+
+              {/*ad thumbnail section end */}
+                {/* thumbnail starts */}
               <div
                 className="thumbnail-section"
                 style={
@@ -1070,7 +1235,7 @@ function Studio() {
                     : { display: "none" }
                 }
               >
-                <p>Thumbnail</p>
+                <p>Video Thumbnail</p>
                 <p>
                   Select or upload a picture that shows what&apos;s in your
                   video. A good thumbnail stands out and draws viewer&apos;s
@@ -1089,6 +1254,7 @@ function Studio() {
                   accept=".jpg, .png"
                   style={{ display: "none" }}
                   onChange={handleThumbnailChange}
+                  ref={thumbnailInputRef}
                 />
               </div>
               <div
@@ -1099,7 +1265,7 @@ function Studio() {
                     : { display: "none" }
                 }
               >
-                <p>Thumbnail</p>
+                <p>Video Thumbnail</p>
                 <p>
                   Select or upload a picture that shows what&apos;s in your
                   video. A good thumbnail stands out and draws viewer&apos;s
@@ -1112,6 +1278,8 @@ function Studio() {
                     style={{ color: theme ? "gray" : "white" }}
                     onClick={() => {
                       setIsThumbnailSelected(false);
+                        setSelectedThumbnail(null);
+                      setPreviewThumbnail(null);
                     }}
                   />
                   <img
@@ -1121,6 +1289,8 @@ function Studio() {
                   />
                 </div>
               </div>
+
+              {/* thumbnail section end */}
               <div className="video-tag-section"></div>
             </div>
             <div className="right-video-section">
@@ -1170,7 +1340,7 @@ function Studio() {
                   className={
                     theme
                       ? "selected-visibility"
-                      : "selected-visibility text-light-mode"
+                      : "selected-visibility-light text-light-mode"
                   }
                   onClick={() => {
                     if (isVisibilityClicked === false) {
@@ -1226,6 +1396,7 @@ function Studio() {
                   ""
                 )}
               </div>
+             
             </div>
           </div>
           <div

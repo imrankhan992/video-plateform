@@ -102,7 +102,7 @@ function Playlists() {
 
   useEffect(() => {
     const handler = (e) => {
-      if (!privacyRef.current.contains(e.target)) {
+      if (!privacyRef?.current?.contains(e.target)) {
         setprivacyClicked(false);
       }
     };
@@ -112,7 +112,7 @@ function Playlists() {
 
   useEffect(() => {
     const handler = (e) => {
-      if (!deleteRef.current.contains(e.target)) {
+      if (!deleteRef?.current?.contains(e.target)) {
         setDeleteClicked(false);
         document.body.classList.remove("bg-css");
       }

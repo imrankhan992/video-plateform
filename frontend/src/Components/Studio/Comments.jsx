@@ -215,6 +215,10 @@ function Comments() {
         }
       );
       await response.json();
+      // delete comment from AllComments state
+      setAllComments((prevComments) =>
+        prevComments.filter((comment) => comment._id !== commentId)
+      );
       // window.location.reload();
     } catch (error) {
       //console.log(error.message);
