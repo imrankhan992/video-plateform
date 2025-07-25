@@ -1857,7 +1857,7 @@ function VideoSection() {
 
       {
             affiliateLink &&  productAdsThumbnail &&(
-                      <AffiliateAdThumbnailSection  affiliateLink={affiliateLink} user={user}
+                      <AffiliateAdThumbnailSection  theme={theme} affiliateLink={affiliateLink} user={user}
     productAdsThumbnail={productAdsThumbnail} />
             )
       }

@@ -1,10 +1,12 @@
 import React from 'react'
 import './AffiliateAdThumbnailSection.css'
-function AffiliateAdThumbnailSection({ user,affiliateLink,
+function AffiliateAdThumbnailSection({ theme,user,affiliateLink,
     productAdsThumbnail}) {
   return (
  <div className='affiliate-ad-thumbnail-section-container'>
-    <p className='affiliate-ad-thumbnail-title'>
+    <p style={{
+  color: theme ? 'white' : 'black',
+    }} className='affiliate-ad-thumbnail-title'>
      
          {user?.name} Affiliate Ad
       </p>

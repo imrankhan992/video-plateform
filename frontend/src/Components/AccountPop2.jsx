@@ -141,21 +141,33 @@ function AccountPop() {
             />
             <p>YouTube</p>
           </div>
-       
-        </div>
-        <hr className={theme ? "seperate" : "seperate seperate-light"} />
-        <div className="extra1-section">
-          <div
+        <div
             className={
-              theme ? "language c-sec" : "language c-sec preview-lightt"
+              theme ? "apperance c-sec" : "apperance c-sec preview-lightt"
             }
+            onClick={() => {
+              if (isBtnClicked === false) {
+                setIsBtnClicked(true);
+              } else {
+                setIsBtnClicked(false);
+              }
+            }}
           >
-            <TranslateOutlinedIcon
+            <DarkModeOutlinedIcon
               fontSize="medium"
               style={{ color: theme ? "#909090" : "black" }}
             />
-            <p>Language: English</p>
+            <p>Appearance: {theme ? "Dark" : "Light"}</p>
+            <ArrowForwardIosRoundedIcon
+              className="open"
+              fontSize="small"
+              style={{ color: theme ? "#ffffff8a" : "#606060" }}
+            />
           </div>
+        </div>
+        <hr className={theme ? "seperate" : "seperate seperate-light"} />
+        <div className="extra1-section">
+       
           <div
             className={theme ? "exitout c-sec" : "exitout c-sec preview-lightt"}
             onClick={handleLogout}
@@ -168,17 +180,33 @@ function AccountPop() {
           </div>
         </div>
       </div>
-      <div
-        className={theme ? "account-pop2" : "account-pop2 light-mode"}
+        <div
+        className={
+          theme ? "account-pop" : "account-pop account-pop-light light-mode"
+        }
         style={
           isBtnClicked === true
             ? { display: "block", paddingTop: "12px" }
             : { display: "none", paddingTop: "20px" }
         }
       >
-      
+        <div className="appearance-title">
+          <ArrowBackOutlinedIcon
+            className={theme ? "back-arrow" : "back-arroww2"}
+            fontSize="medium"
+            style={{ color: theme ? "white" : "black" }}
+            onClick={() => {
+              if (isBtnClicked === true) {
+                setIsBtnClicked(false);
+              } else {
+                setIsBtnClicked(true);
+              }
+            }}
+          />
+          <p>Apperance</p>
+        </div>
         <hr
-          className={theme ? "seperate" : "seperate seperate-light"}
+          className={theme ? "seperate" : "seperate-light"}
           style={
             isBtnClicked === true ? { marginTop: "6px" } : { marginTop: "15px" }
           }
@@ -187,7 +215,7 @@ function AccountPop() {
           <p className="caution">Settings applied to this browser only</p>
           <div className="theme-list">
             <div
-              className={theme ? "dark-theme" : "dark-theme preview-lightt"}
+              className={theme ? "dark-theme" : "dark-theme2"}
               onClick={() => {
                 setTheme(true);
                 window.location.reload();
@@ -196,12 +224,13 @@ function AccountPop() {
               <DoneOutlinedIcon
                 className="dark-arrow"
                 fontSize="medium"
-                style={{ opacity: theme ? "1" : "0" }}
+                color={theme ? "white" : "black"}
+                style={theme === true ? { opacity: 1 } : { opacity: 0 }}
               />
               <p>Dark theme</p>
             </div>
             <div
-              className={theme ? "light-theme" : "light-theme preview-lightt"}
+              className={theme ? "light-theme" : "light-theme2"}
               onClick={() => {
                 setTheme(false);
                 window.location.reload();
@@ -210,7 +239,8 @@ function AccountPop() {
               <DoneOutlinedIcon
                 className="light-arrow"
                 fontSize="medium"
-                style={{ opacity: !theme ? "1" : "0" }}
+                color={theme ? "white" : "black"}
+                style={theme === false ? { opacity: 1 } : { opacity: 0 }}
               />
               <p>Light theme</p>
             </div>

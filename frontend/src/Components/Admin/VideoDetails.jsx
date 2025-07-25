@@ -718,8 +718,8 @@ const handleAffiliateThumbnailUpload = (e) => {
                   className="currnt-video-tags-section"
                   style={{ marginTop: thumbnailSelected ? "0px" : "30px" , paddingBottom:"5rem" }}
                 >
-                  <p className={theme ? "" : "text-light-mode"}>Tags</p>
-                  <p className={theme ? "" : "text-light-mode2"}>
+                  <p className={theme ? "text-dark-mode" : "text-light-mode"}>Tags</p>
+                  <p className={theme ? "text-dark-mode" : "text-light-mode2"}>
                     Tags can be useful if content in your video is commonly
                     misspelled. Otherwise, tags play a minimal role in helping
                     viewers find your video.

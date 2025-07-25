@@ -19,11 +19,13 @@ const AffiliateAdThumbnailSection = ({
   console.log(thumbnailImage, "thumbnailImage");
   return (
     <div className="currentvideo-thumbnailedit">
-      <p className={theme ? "" : "text-light-mode"}>Add your product</p>
+      <p className={theme ? "" : "text-light-mode"}>Showcase Your Ad with a Thumbnail
+
+</p>
       <p className={theme ? "" : "text-light-mode2"}>
-        You can add ads in your video description that viewers can click to view
-        or buy affiliate products. This helps you earn commissions while sharing
-        your content with your audience.
+      Select or upload a picture that clearly represents your ad. A good thumbnail should showcase the product or service you are advertising.
+
+
       </p>
 
       <input

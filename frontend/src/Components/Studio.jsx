@@ -1146,7 +1146,7 @@ function Studio() {
                     placeholder="Tags"
                     onChange={(e) => setVideoTags(e.target.value)}
                   />
-                  <SelectCategory   isCategoryClicked ={isCategoryClicked} setIsCategoryClicked={setIsCategoryClicked} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/> 
+                  <SelectCategory theme={theme}   isCategoryClicked ={isCategoryClicked} setIsCategoryClicked={setIsCategoryClicked} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/> 
                    <input
                     type="text"
                     className={theme ? "video-tags" : "video-tags light-mode"}
@@ -1340,7 +1340,7 @@ function Studio() {
                   className={
                     theme
                       ? "selected-visibility"
-                      : "selected-visibility-light text-light-mode"
+                      : "selected-visibility-light "
                   }
                   onClick={() => {
                     if (isVisibilityClicked === false) {
@@ -1414,7 +1414,7 @@ function Studio() {
                   : "seperate seperate2 seperate-light"
               }
             />
-            <div className="last-btn">
+            <div className={` ${theme ? "last-btn-dark" : "last-btn"}`}>
               <div className="left-icons">
                 <CloudUploadIcon
                   className="left-ic"

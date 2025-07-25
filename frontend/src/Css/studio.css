@@ -184,6 +184,13 @@
   padding: 15px;
   background-color: white;
 }
+.last-btn-dark{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: #282828;
+}
 
 .last-segment {
   position: absolute;
@@ -563,7 +570,7 @@
 
 .selected-visibility {
   height: 50px;
-  background-color: black;
+   background-color: #3d3f4359;
   color: white;
   cursor: pointer;
   outline: none;
@@ -581,7 +588,6 @@
 }
 .selected-visibility-light{
    height: 50px;
-  color: white;
   cursor: pointer;
   outline: none;
   height: 50px;
@@ -611,7 +617,6 @@
   font-size: 15px;
   width: -webkit-fill-available;
   animation: pulldown 0.16s ease;
-    background-color: black;
 
 }
 
