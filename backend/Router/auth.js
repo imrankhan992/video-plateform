@@ -60,10 +60,10 @@ auth.post("/signup", async (req, res) => {
     const mailOptions = {
       from: "admin@shubho.youtube.app",
       to: email,
-      subject: "Welcome to Shubho's YouTube Clone!",
+      subject: "Welcome!",
       html: `
         <div style="font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px;">
-          <h1 style="color: #333;">Welcome to Shubho's YouTube Clone!</h1>
+          <h1 style="color: #333;">Welcome!</h1>
           <p style="color: #555;">Hello ${name},</p>
           <p style="color: #555;">We are excited to have you as a new member of our community! Thank you for joining.</p>
           <p style="color: #555;">Feel free to explore our platform and start sharing your videos with the world.</p>

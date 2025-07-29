@@ -593,15 +593,14 @@ Channel.post("/savecustomization/:email", async (req, res) => {
     }
 
     const user = await userData.findOne({ email });
-    const video = await videodata.findOne({ user_email: email });
+    const video = await videodata.findOne({ email: email });
+    console.log(video,"this is video data");
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    if (!video) {
-      return res.status(404).json({ error: "Video data not found" });
-    }
+   
 
     user.profilePic = profileURL;
     user.channelData[0].channelProfile = profileURL;
@@ -625,7 +624,8 @@ Channel.post("/savecustomization/:email", async (req, res) => {
       }
     );
 
-    video.VideoData.forEach((item) => {
+ if(video) {
+   video.VideoData.forEach((item) => {
       item.ChannelProfile = profileURL;
     });
 
@@ -643,9 +643,10 @@ Channel.post("/savecustomization/:email", async (req, res) => {
         ],
       }
     );
-
+ await video.save();
+}
     await user.save();
-    await video.save();
+   
 
     res.json({ success: true, userData: user });
   } catch (error) {
