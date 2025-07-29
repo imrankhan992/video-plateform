@@ -35,6 +35,7 @@ import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import { MdVideoLibrary } from "react-icons/md";
 import { useSelector } from "react-redux";
+import { BiSolidDonateHeart } from "react-icons/bi";
 
 function LeftPanel() {
   const backendURL = "http://localhost:3000"
@@ -201,6 +202,25 @@ function LeftPanel() {
         }
       >
         <div className="first-section ">
+           <div
+            className={
+              
+                "donaiton-button sec-data"
+            }
+            onClick={() => {
+             
+              window.location.href = "/donation";
+            }}
+          >
+            
+              <BiSolidDonateHeart
+                fontSize="large"
+              
+              />
+          
+
+            <p>Donation</p>
+          </div>
           <div
             className={
               selected === "home"
@@ -531,6 +551,25 @@ function LeftPanel() {
         }
       >
         <div className="first-section ">
+            <div
+            className={
+              
+                "donaiton-button sec-data"
+            }
+            onClick={() => {
+             
+              window.location.href = "/donation";
+            }}
+          >
+            
+              <BiSolidDonateHeart
+                fontSize="large"
+              
+              />
+          
+
+            <p>Donation</p>
+          </div>
           <div
             className={
               selected === "home"
@@ -719,7 +758,30 @@ function LeftPanel() {
         }
         style={{ display: "none" }}
       >
+     
+
         <div className="first-section ">
+           <div
+            className={
+            
+        "      home sec-data sec-data2 "
+                    
+                
+            }
+            onClick={() => {
+              
+
+              window.location.href = "/donation";
+            }}
+          >
+           
+              <BiSolidDonateHeart
+                fontSize={"23px"}
+                 style={{ color: theme ? "white" : "black" }}
+              />
+           
+          </div>
+          
           <div
             className={
               selected === "home"
@@ -1009,6 +1071,21 @@ function LeftPanel() {
           }
         >
           <div className="first-section ">
+            <div
+              className={
+                "donaiton-button sec-data"
+              }
+              onClick={() => {
+                window.location.href = "/donation";
+              }}
+            >
+              <BiSolidDonateHeart
+
+                fontSize="large"
+                style={{ color: theme ? "white" : "black" }}
+              />
+              <p>Donation</p>
+            </div>
             <div
               className={
                 selected === "home"
@@ -1333,6 +1410,22 @@ function LeftPanel() {
         className={theme ? "horizontal-panel" : "horizontal-panel light-mode"}
       >
         <div className="horizontal-main-section">
+          <div
+            className={
+              theme ? "donation-hori hori" : "donation-hori hori text-light-mode"
+            }
+            onClick={() => {
+              window.location.href = "/donation";
+            }}
+          >
+            <BiSolidDonateHeart
+
+              fontSize="28px"
+              color={theme ? "white" : "black"}
+              className="hor-icons"
+            />
+            <p>Donation</p>
+          </div>
           <div
             className={
               theme ? "home-hori hori" : "home-hori hori text-light-mode"

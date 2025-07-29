@@ -1,4 +1,6 @@
-require("dotenv").config();
+const path = require("path");
+require("dotenv").config({ path: path.join(__dirname, "../../.env") });
+
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const Payment = express.Router();
@@ -7,7 +9,9 @@ Payment.use(cookieParser());
 
 
 const Stripe = require('stripe');
-const stripe = Stripe('sk_test_51PX0FHLhXKwMvDT9RIsWf3w4ZK0qdPXajDHjvcffavOlf3VuPZZ1XeikM4TgArFBTCMZDSBNRESkwCjiWmZlHKvB00pztnZ98m'); // Keep secret!
+const stripe = Stripe(`${process.env.STRIPE_KEY}`);
+
+console.log(process.env.STRIPE_KEY, "Stripe Key Loaded");
 
 Payment.post('/api/create-checkout-session', async (req, res) => {
   const { amount } = req.body; // e.g., 5, 10, 20

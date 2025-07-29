@@ -26,6 +26,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchUserData } from "./reducer/user";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
+import DonationPage from "./Components/Payment/Donation";
+import SuccessPage from "./Components/Payment/Success/SuccessPage";
+import FailedPaymentPage from "./Components/Payment/Failed/FailedPaymentPage";
 
 function App() {
   const User = useSelector((state) => state.user?.user);
@@ -125,6 +128,10 @@ function App() {
             element={user ? <Subscriptions /> : <Error />}
           />
           <Route path="/video/:id" element={<VideoSection />} />
+          <Route path="/donation" element={<DonationPage />} />
+          <Route path="/success" element={<SuccessPage />} />
+                    <Route path="/cancel" element={<FailedPaymentPage />} />
+
           <Route path="/*" element={<Error />} />
         </Routes>
       </BrowserRouter>

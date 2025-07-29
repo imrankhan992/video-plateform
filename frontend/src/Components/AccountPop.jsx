@@ -12,6 +12,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Zoom from "@mui/material/Zoom";
 import { SiYoutubestudio } from "react-icons/si";
 import { useSelector } from "react-redux";
+import { MdDashboard } from "react-icons/md";
 
 function AccountPop() {
   const backendURL = "http://localhost:3000"
@@ -130,6 +131,20 @@ function AccountPop() {
         <hr className={theme ? "seperate" : "seperate-light"} />
         <div className="about-channel-section">
           <div
+            className={theme ? "yourstudio c-sec" : "yourstudio c-sec2"}
+            onClick={() => {
+            user?.role === "admin"
+              ? (window.location.href = `/admin/studio/video`) 
+              : (window.location.href = `/studio`);
+            }}
+          >
+            <MdDashboard
+              fontSize="21px"
+              style={{ color: theme ? "white" : "black" }}
+            />
+            <p>Dashboard</p>
+          </div>
+          <div
             className={theme ? "yourchannel c-sec" : "yourchannel c-sec2"}
             onClick={() => {
               if (isChannel === true) {
@@ -145,20 +160,7 @@ function AccountPop() {
             />
             <p>Your channel</p>
           </div>
-          <div
-            className={theme ? "yourstudio c-sec" : "yourstudio c-sec2"}
-            onClick={() => {
-            user?.role === "admin"
-              ? (window.location.href = `/admin/studio/video`) 
-              : (window.location.href = `/studio`);
-            }}
-          >
-            <SiYoutubestudio
-              fontSize="21px"
-              style={{ color: theme ? "white" : "black" }}
-            />
-            <p>YouTube Studio</p>
-          </div>
+        
            <div
             className={theme ? "apperance c-sec" : "apperance c-sec2"}
             onClick={() => {
@@ -169,8 +171,8 @@ function AccountPop() {
               }
             }}
           >
-            <DarkModeOutlinedIcon
-              fontSize="medium"
+            <SiYoutubestudio
+              fontSize="large"
               style={{ color: theme ? "white" : "black" }}
             />
             <p>Appearance: {theme ? "Dark" : "Light"}</p>

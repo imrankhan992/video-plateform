@@ -12,6 +12,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Zoom from "@mui/material/Zoom";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { useSelector } from "react-redux";
+import { SiYoutubestudio } from "react-icons/si";
 function AccountPop() {
   const backendURL = "http://localhost:3000"
   // const backendURL = "http://localhost:3000";
@@ -139,7 +140,7 @@ function AccountPop() {
               fontSize="medium"
               style={{ color: theme ? "#909090" : "black" }}
             />
-            <p>YouTube</p>
+            <p>Watch Videos</p>
           </div>
         <div
             className={
@@ -153,8 +154,8 @@ function AccountPop() {
               }
             }}
           >
-            <DarkModeOutlinedIcon
-              fontSize="medium"
+            <SiYoutubestudio
+              fontSize="large"
               style={{ color: theme ? "#909090" : "black" }}
             />
             <p>Appearance: {theme ? "Dark" : "Light"}</p>

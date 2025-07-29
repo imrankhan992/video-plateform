@@ -15,7 +15,7 @@ import avatar from "../img/avatar.png";
 import { useParams } from "react-router-dom";
 import Tooltip from "@mui/material/Tooltip";
 import Zoom from "@mui/material/Zoom";
-import { FiSearch } from "react-icons/fi";
+import { FiPlusCircle, FiSearch } from "react-icons/fi";
 import { IoIosSearch } from "react-icons/io";
 import { RxCross1 } from "react-icons/rx";
 import { AiOutlineVideoCameraAdd } from "react-icons/ai";
@@ -159,10 +159,10 @@ function Navbar() {
           />
           <Tooltip
             TransitionComponent={Zoom}
-            title="YouTube studio"
+            title="Dashboard"
             placement="bottom"
           >
-            <AiOutlineVideoCameraAdd
+            <FiPlusCircle
               className={theme ? "icon-btns videocreate" : "video-light"}
               fontSize="24px"
               style={{ color: theme ? "white" : "black" }}

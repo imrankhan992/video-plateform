@@ -1,0 +1,161 @@
+/* FailedPaymentPage.css */
+.failed-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #fff9f9;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.failed-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(255, 0, 0, 0.05);
+  padding: 40px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.failed-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background-color: #ffebee;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.failed-icon svg {
+  width: 40px;
+  height: 40px;
+  fill: #f44336;
+}
+
+.failed-title {
+  color: #d32f2f;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.failed-message {
+  color: #555;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.failed-reasons {
+  background-color: #fff5f5;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.failed-reasons h3 {
+  color: #d32f2f;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.failed-reasons ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.failed-reasons li {
+  color: #555;
+  margin-bottom: 10px;
+  padding-left: 25px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.failed-reasons li:before {
+  content: "•";
+  color: #f44336;
+  font-size: 1.5rem;
+  position: absolute;
+  left: 5px;
+  top: -3px;
+}
+
+.failed-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.try-again-button, .contact-button {
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+}
+
+.try-again-button {
+  background: linear-gradient(to right, red, darkred);
+  color: white;
+}
+
+.try-again-button:hover {
+  background: linear-gradient(to right, red, #5d3a7d);
+  transform: translateY(-2px);
+}
+
+.contact-button {
+  background-color: white;
+  color: #d32f2f;
+  border: 1px solid #d32f2f;
+}
+
+.contact-button:hover {
+  background-color: #ffebee;
+}
+
+.failed-note {
+  font-size: 0.9rem;
+  color: #777;
+  font-style: italic;
+  border-top: 1px solid #ffebee;
+  padding-top: 20px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .failed-card {
+    padding: 30px 20px;
+  }
+  
+  .failed-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .try-again-button, .contact-button {
+    width: 100%;
+  }
+}
